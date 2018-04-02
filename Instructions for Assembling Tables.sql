@@ -153,7 +153,7 @@ EXPLAIN pans ;
 # 5. Save the file on your desktop as alter_table.sql, then launch the MySQL Command Line Client and login as user with full access privileges, such as root and issue a query to use the established database
 USE site_db ;
 
-# 3. Now, implement the SQL query by stating the source path to the SQL file on your system, such as
+# 6. Now, implement the SQL query by stating the source path to the SQL file on your system, such as
 SOURCE C:\Users\funan\Desktop\Desktop-2\PHP 1 Docs\PHP from Ineasy\sql\alter_table.sql
 
 
