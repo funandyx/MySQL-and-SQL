@@ -42,7 +42,7 @@ name  TEXT,
 color TEXT
 ) ;
 
-# 2. Save the file on your desktop as "create_table.sql", then launch the MySQL Comman Line Client and login as a user with full access privileges, such as root
+# 2. Save the file on your desktop as "create_table.sql", then launch the MySQL Command Line Client and login as a user with full access privileges, such as root
 
 # 3. Next, issue a query to use the established database
 USE site_db ;
