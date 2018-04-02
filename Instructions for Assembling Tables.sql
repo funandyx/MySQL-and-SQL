@@ -9,6 +9,7 @@ USE database-name ;
 #Once the database has been selected, it is possible to view a list of all the tables it contains with this query
 SHOW TABLES ;
 
+NOTE: YOU CAN PERFORM ALL THE BELOW WITHOUT USING A PLAIN TEXT EDITOR, EITHER DIRECTLY INTO MYSQL OR USING THE COMMAND LINE CLIENT
 
 #FIRST
 # 1. Launch the MySQL Command Line Client then enter the root password you chose during installation
