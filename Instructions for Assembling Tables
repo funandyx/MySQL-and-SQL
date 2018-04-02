@@ -1,2 +1,0 @@
-In the MySQL Command Line Client, you can display a list of all databases on your MySQL Server using this query:
-SHOW DATABASES ;
