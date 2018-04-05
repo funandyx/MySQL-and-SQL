@@ -151,7 +151,7 @@ price			DECIMAL(6.2)
 EXPLAIN pans ;
 
 # 3. Now add a query to update the table
-ALTER TABLE pans ;
+ALTER TABLE pans
 ADD PRIMARY KEY ( id ) ,
 ADD COLUMN code INT UNIQUE NOT NULL , 
 CHANGE pattern pan_pattern VARCHAR(25) NOT NULL , 
