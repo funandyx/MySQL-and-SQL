@@ -263,9 +263,9 @@ SELECT * FROM tiles ;
 1. SELECT
 #There are two required ingredients in any SQL query: SELECT and FROM—and they have to be in that order. SELECT indicates which columns you’d like to view, and FROM identifies the table that they live in.
   
-SELECT Country Name,
-       Birth rate,
-       Income Group
+SELECT `Country Name`,
+       `Birth rate`,
+       `Income Group`
   FROM `demographics`
   
   
@@ -301,7 +301,19 @@ The query below selects the sum of the volume column from the Demographics datas
   
 #If you’d like your results to look a bit more presentable, you can rename columns to include spaces. For example, if you want the Birth rate column to appear as "Birth Rate" in the results, you would have to type:
   
-SELECT Birth rate AS "Birth Rate"
+SELECT `Birth rate` AS "Birth Rate"
   FROM `demographics`
   
 #Without the double quotes, that query would read ‘Birth’ and ‘rate’ as separate objects and would return an error. Note that the results will only return capital letters if you put column names in double quotes. 
+  
+#Using the SQL LIMIT command
+
+  SELECT *
+  FROM `demographics`
+  LIMIT 10
+
+#The SQL WHERE clause
+  
+SELECT *
+  FROM `demographics`
+ WHERE Income Group = `Low` `income`
