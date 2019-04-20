@@ -252,7 +252,29 @@ SELECT * FROM tiles ;
 
 
 #HANDLING DATA (MORE OF THIS LATER IN THE COURSE)
+
   
+  
+#SQL FOR DATA ANALYSES
+  
+#Formatting convention
+#You might have noticed that the SELECT and `FROM’ commands are capitalized. This isn’t actually necessary—SQL will understand these commands if you type them in lowercase.
+  
+1. SELECT
+#There are two required ingredients in any SQL query: SELECT and FROM—and they have to be in that order. SELECT indicates which columns you’d like to view, and FROM identifies the table that they live in.
+  
+SELECT Country Name,
+       Birth rate,
+       Income Group
+  FROM `demographics`
+  
+  
+#SELECT ALL
+#If you want to select every column in a table, you can use * instead of the column names:
+
+SELECT *
+  FROM `demographics`
+
   
 #SELECT COUNT
 
@@ -265,11 +287,21 @@ SELECT * FROM tiles ;
 
 2. Counting individual columns
   
-The following code will provide a count of all of rows in which the high column is not null.
+#The following code will provide a count of all of rows in which the high column is not null.
   
 SELECT COUNT(high)
-  FROM tutorial.aapl_historical_stock_price
+  FROM `demographics`
   
- SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
 
+#SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
 The query below selects the sum of the volume column from the Demographics dataset:
+  
+  SELECT SUM(volume)
+  FROM `demographics`
+  
+#If you’d like your results to look a bit more presentable, you can rename columns to include spaces. For example, if you want the Birth rate column to appear as "Birth Rate" in the results, you would have to type:
+  
+SELECT Birth rate AS "Birth Rate"
+  FROM `demographics`
+  
+#Without the double quotes, that query would read ‘Birth’ and ‘rate’ as separate objects and would return an error. Note that the results will only return capital letters if you put column names in double quotes. 
