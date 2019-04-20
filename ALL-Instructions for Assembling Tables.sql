@@ -252,3 +252,24 @@ SELECT * FROM tiles ;
 
 
 #HANDLING DATA (MORE OF THIS LATER IN THE COURSE)
+  
+  
+#SELECT COUNT
+
+1. Counting all rows
+#COUNT is a SQL aggregate function for counting the number of rows in a particular column. COUNT is the easiest aggregate function to begin with because verifying your results is extremely simple. Let’s begin by using * to select all rows 
+  
+ SELECT COUNT(*)
+  FROM `demographics`
+  
+
+2. Counting individual columns
+  
+The following code will provide a count of all of rows in which the high column is not null.
+  
+SELECT COUNT(high)
+  FROM tutorial.aapl_historical_stock_price
+  
+ SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
+
+The query below selects the sum of the volume column from the Demographics dataset:
