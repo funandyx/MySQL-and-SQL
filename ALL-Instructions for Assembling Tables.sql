@@ -363,3 +363,72 @@ SELECT *
 
   
 #SQL LIKE
+
+  
+  
+  
+  
+#SQL BETWEEN
+
+  
+  
+#SQL IS NULL
+
+#IS NULL is a logical operator in SQL that allows you to exclude rows with missing data from your results.
+ 
+  SELECT *
+  FROM `demographics`
+ WHERE `Birth rate` IS NULL
+  
+  
+  
+#SQL AND
+#AND is a logical operator in SQL that allows you to select only rows that satisfy two conditions.
+  
+  SELECT *
+  FROM `demographics`
+	WHERE `Birth rate` = 10 AND `Internet Users` <= 100
+  
+#SQL OR
+#OR is a logical operator in SQL that allows you to select rows that satisfy either of two conditions. It works the same way as AND, which selects the rows that satisfy both of two conditions.
+  
+SELECT *
+  FROM `demographics`
+ WHERE `Birth rate` = 5 OR `Internet users` = 20
+  
+  
+#SQL ORDER BY
+#The ORDER BY clause allows you to reorder your results based on the data in one or more columns. 
+
+  SELECT *
+  FROM `demographics`
+ WHERE `Internet users` = 20
+ ORDER BY `Income group`
+  
+  
+#SQL Aggregate Functions
+#SQL is excellent at aggregating data the way you might in a pivot table in Excel. You will use aggregate functions all the time, so it’s important to get comfortable with them. The functions themselves are the same ones you will find in Excel or any other analytics program. We’ll cover them individually in the next few lessons. Here’s a quick preview:
+
+COUNT counts how many rows are in a particular column.
+SUM adds together all the values in a particular column.
+MIN and MAX return the lowest and highest values in a particular column, respectively.
+AVG calculates the average of a group of selected values.
+
+  
+  #SQL COUNT
+
+  
+  #SQL SUM
+#SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
+
+SELECT SUM(`Internet users`)
+  FROM `demographics`
+  
+  
+#SQL MIN/MAX
+#MIN and MAX are SQL aggregation functions that return the lowest and highest values in a particular column.
+  
+  SELECT MIN(`Internet users`) AS `Internet users`,
+       MAX(`Internet users`) AS `Internet users`
+   FROM `demographics`
+  
