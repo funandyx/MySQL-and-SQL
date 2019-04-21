@@ -316,4 +316,50 @@ SELECT `Birth rate` AS "Birth Rate"
   
 SELECT *
   FROM `demographics`
- WHERE Income Group = `Low` `income`
+ WHERE `Country Name` = `Country Name`
+  
+  
+#Comparison operators on numerical data
+
+  SELECT *
+  FROM `demographics`
+ WHERE `Birth rate` > 30
+
+  
+#The most basic way to filter data is using comparison operators. The easiest way to understand them is to start by looking at a list of them:
+
+Equal to	=
+Not equal to	<> or !=
+Greater than	>
+Less than	<
+Greater than or equal to	>=
+Less than or equal to	<=
+  
+  
+
+  SELECT *
+  FROM `demographics`
+ WHERE `Country Name` != 'Estonia'
+  
+  
+  
+#SQL Logical Operators
+
+#Each logical operator is a special snowflake, so we’ll go through them individually in the following lessons. Here’s a quick preview:
+
+LIKE allows you to match similar values, instead of exact values.
+IN allows you to specify a list of values you’d like to include.
+BETWEEN allows you to select only rows within a certain range.
+IS NULL allows you to select rows that contain no data in a given column.
+AND allows you to select only rows that satisfy two conditions.
+OR allows you to select rows that satisfy either of two conditions.
+NOT allows you to select rows that do not match a certain condition.
+  
+  
+SELECT *
+  FROM `demographics`
+ ORDER BY `Income Group` DESC, 'High Income'
+
+
+  
+#SQL LIKE
