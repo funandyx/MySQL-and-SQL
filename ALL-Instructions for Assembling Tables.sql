@@ -292,59 +292,60 @@ SELECT *
 #Counting individual columns 
 #The following code will provide a count of all of rows in which the high column is not null.
   
-SELECT COUNT(high)
-  FROM `demographics`
+SELECT COUNT(`Country Name`)
+FROM `demographics`
   
+	
 #3. SQL SUM
 #SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
 #The query below selects the sum of the volume column from the Demographics dataset:
   
-  SELECT SUM(volume)
-  FROM `demographics`
+SELECT SUM(`Birth rate`)
+FROM `demographics`
   
 #If you’d like your results to look a bit more presentable, you can rename columns to include spaces. For example, if you want the Birth rate column to appear as "Birth Rate" in the results, you would have to type:
   
-SELECT `Birth rate` AS "Birth Rate"
-  FROM `demographics`
+SELECT `Birth rate` AS "Birth Rate-2"
+FROM `demographics`
   
 #Without the double quotes, that query would read ‘Birth’ and ‘rate’ as separate objects and would return an error. Note that the results will only return capital letters if you put column names in double quotes. 
   
+	
 #4. SQL LIMIT
 #Using the SQL LIMIT command
 
-  SELECT *
-  FROM `demographics`
-  LIMIT 10
+SELECT *
+FROM `demographics`
+LIMIT 10
 
+	
 #5. The SQL WHERE clause
   
 SELECT *
-  FROM `demographics`
- WHERE `Country Name` = `Country Name`
+FROM `demographics`
+WHERE `Internet users` = 20
   
   
-	
-
 #6. Comparison operators on numerical data
 #SQL SELECT WHERE clause	
 	
-  SELECT *
-  FROM `demographics`
+ SELECT *
+ FROM `demographics`
  WHERE `Birth rate` > 30
+ ORDER BY `Income Group`
 
   
 #The most basic way to filter data is using comparison operators. The easiest way to understand them is to start by looking at a list of them:
-
-#Equal to	=
-#Not equal to	<> or !=
-#Greater than	>
-#Less than	<
+#Equal to 			=
+#Not equal to			<> or !=
+#Greater than			>
+#Less than			<
 #Greater than or equal to	>=
-#Less than or equal to	<=
+#Less than or equal to		<=
   
   
-  SELECT *
-  FROM `demographics`
+ SELECT *
+ FROM `demographics`
  WHERE `Country Name` != 'Estonia'
   
   
@@ -362,87 +363,103 @@ SELECT *
   
   
 SELECT *
-  FROM `demographics`
- ORDER BY `Income Group` DESC, 'High Income'
+FROM `demographics`
+ORDER BY `Income Group` DESC, 'High Income'
 
 
   
 #SQL LIKE
+#LIKE is a logical operator in SQL that allows you to match on similar values rather than exact ones.
 
+SELECT *
+FROM `demographics`
+WHERE "Country Name" LIKE 'Country Name'
   
-  
-  
-  
-#SQL BETWEEN
+#Note: "country name" appears in quotations above. The double quotes (as opposed to single: ') are a way of indicating that you are referring to the column name "Country Name", not a SQL function like "group". In general, putting double quotes around a word or phrase will indicate that you are referring to that column name.
+ 
+	
+#SQL_BETWEEN
+#BETWEEN is a logical operator in SQL that allows you to select only rows that are within a specific range. It has to be paired with the AND operator, which you’ll learn about in a later lesson
 
-  
-  
-#8. SQL IS NULL
+SELECT *
+FROM `demographics`
+WHERE `Birth rate` BETWEEN 5 AND 10
+ 
+SELECT *
+FROM `demographics`
+WHERE `Birth rate` >= 5 AND `Internet users` <= 10	
+
+	
+	
+#8. SQL_IS_NULL
 #IS NULL is a logical operator in SQL that allows you to exclude rows with missing data from your results.
  
-  SELECT *
-  FROM `demographics`
+ SELECT *
+ FROM `demographics`
  WHERE `Birth rate` IS NULL
   
   
   
-#9. SQL AND
+#9. SQL_AND
 #AND is a logical operator in SQL that allows you to select only rows that satisfy two conditions.
   
   SELECT *
   FROM `demographics`
-	WHERE `Birth rate` = 10 AND `Internet Users` <= 100
+  WHERE `Birth rate` = 10 AND `Internet Users` <= 100
   
-#10. SQL OR
+	
+#10. SQL_OR
 #OR is a logical operator in SQL that allows you to select rows that satisfy either of two conditions. It works the same way as AND, which selects the rows that satisfy both of two conditions.
   
 SELECT *
-  FROM `demographics`
- WHERE `Birth rate` = 5 OR `Internet users` = 20
+FROM `demographics`
+WHERE `Birth rate` = 5 OR `Internet users` = 20
   
+	
   
-#11. SQL ORDER BY
+#11. SQL_ORDER_BY
 #The ORDER BY clause allows you to reorder your results based on the data in one or more columns. 
 
-  SELECT *
-  FROM `demographics`
+ SELECT *
+ FROM `demographics`
  WHERE `Internet users` = 20
  ORDER BY `Income group`
   
   
+	
 #12. SQL Aggregate Functions
 #SQL is excellent at aggregating data the way you might in a pivot table in Excel. You will use aggregate functions all the time, so it’s important to get comfortable with them. The functions themselves are the same ones you will find in Excel or any other analytics program. We’ll cover them individually in the next few lessons. Here’s a quick preview:
 
-COUNT counts how many rows are in a particular column.
-SUM adds together all the values in a particular column.
-MIN and MAX return the lowest and highest values in a particular column, respectively.
-AVG calculates the average of a group of selected values.
+#COUNT counts how many rows are in a particular column.
+#SUM adds together all the values in a particular column.
+#MIN and MAX return the lowest and highest values in a particular column, respectively.
+#AVG calculates the average of a group of selected values.
 
-#SQL COUNT
+#SQL_COUNT
 #COUNT is a SQL aggregate function for counting the number of rows in a particular column. COUNT is the easiest aggregate function to begin with because verifying your results is extremely simple
 	
 SELECT COUNT(*)
-   FROM `demographics`
+FROM `demographics`
   
 #SQL SUM
 #SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
 
 SELECT SUM(`Internet users`)
-  FROM `demographics`
+FROM `demographics`
   
   
 #SQL MIN/MAX
 #MIN and MAX are SQL aggregation functions that return the lowest and highest values in a particular column.
   
   SELECT MIN(`Internet users`) AS `Internet users`,
-       MAX(`Internet users`) AS `Internet users`
-   FROM `demographics`
+  MAX(`Internet users`) AS `Internet users`
+  FROM `demographics`
 
 #SQL AVG	
 #AVG is a SQL aggregate function that calculates the average of a selected group of values.
 
 SELECT AVG(`Birth rate`)
-  FROM `demographics`
+FROM `demographics`
 	
 #SQL GROUP BY	
 #SQL aggregate functions like COUNT, AVG, and SUM have something in common: they all aggregate across the entire table. But what if you want to aggregate only part of a table? For example, you might want to count the number of entries for each year.
@@ -467,12 +484,12 @@ SELECT `Birth rate`,
 #DISTINCT can be particularly helpful when exploring a new data set. In many real-world scenarios, you will generally end up writing several preliminary queries in order to figure out the best approach to answering your initial question. Looking at the unique values on each column can help identify how you might want to group or filter the data.
 
 SELECT DISTINCT `Birth rate`, `Internet users`
-  FROM `demographics`
+FROM `demographics`
 	
 #If you include two (or more) columns in a SELECT DISTINCT clause, your results will contain all of the unique pairs of those two columns:
 
 SELECT DISTINCT `Birth rate`, `Internet users`
-  FROM `demographics`
+FROM `demographics`
 
 	
 #14. SQL CASE
