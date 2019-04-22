@@ -255,12 +255,16 @@ SELECT * FROM tiles ;
 
   
   
+	
+	
+	
+
 #SQL FOR DATA ANALYSES
   
 #Formatting convention
 #You might have noticed that the SELECT and `FROM’ commands are capitalized. This isn’t actually necessary—SQL will understand these commands if you type them in lowercase.
   
-1. SELECT
+#1. SELECT
 #There are two required ingredients in any SQL query: SELECT and FROM—and they have to be in that order. SELECT indicates which columns you’d like to view, and FROM identifies the table that they live in.
   
 SELECT `Country Name`,
@@ -276,25 +280,24 @@ SELECT *
   FROM `demographics`
 
   
-#SELECT COUNT
+#2. SELECT COUNT
 
-1. Counting all rows
+#Counting all rows
 #COUNT is a SQL aggregate function for counting the number of rows in a particular column. COUNT is the easiest aggregate function to begin with because verifying your results is extremely simple. Let’s begin by using * to select all rows 
   
  SELECT COUNT(*)
   FROM `demographics`
   
 
-2. Counting individual columns
-  
+#Counting individual columns 
 #The following code will provide a count of all of rows in which the high column is not null.
   
 SELECT COUNT(high)
   FROM `demographics`
   
-
+#3. SQL SUM
 #SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
-The query below selects the sum of the volume column from the Demographics dataset:
+#The query below selects the sum of the volume column from the Demographics dataset:
   
   SELECT SUM(volume)
   FROM `demographics`
@@ -306,21 +309,25 @@ SELECT `Birth rate` AS "Birth Rate"
   
 #Without the double quotes, that query would read ‘Birth’ and ‘rate’ as separate objects and would return an error. Note that the results will only return capital letters if you put column names in double quotes. 
   
+#4. SQL LIMIT
 #Using the SQL LIMIT command
 
   SELECT *
   FROM `demographics`
   LIMIT 10
 
-#The SQL WHERE clause
+#5. The SQL WHERE clause
   
 SELECT *
   FROM `demographics`
  WHERE `Country Name` = `Country Name`
   
   
-#Comparison operators on numerical data
+	
 
+#6. Comparison operators on numerical data
+#SQL SELECT WHERE clause	
+	
   SELECT *
   FROM `demographics`
  WHERE `Birth rate` > 30
@@ -328,32 +335,30 @@ SELECT *
   
 #The most basic way to filter data is using comparison operators. The easiest way to understand them is to start by looking at a list of them:
 
-Equal to	=
-Not equal to	<> or !=
-Greater than	>
-Less than	<
-Greater than or equal to	>=
-Less than or equal to	<=
+#Equal to	=
+#Not equal to	<> or !=
+#Greater than	>
+#Less than	<
+#Greater than or equal to	>=
+#Less than or equal to	<=
   
   
-
   SELECT *
   FROM `demographics`
  WHERE `Country Name` != 'Estonia'
   
   
   
-#SQL Logical Operators
-
+#7. SQL Logical Operators
 #Each logical operator is a special snowflake, so we’ll go through them individually in the following lessons. Here’s a quick preview:
 
-LIKE allows you to match similar values, instead of exact values.
-IN allows you to specify a list of values you’d like to include.
-BETWEEN allows you to select only rows within a certain range.
-IS NULL allows you to select rows that contain no data in a given column.
-AND allows you to select only rows that satisfy two conditions.
-OR allows you to select rows that satisfy either of two conditions.
-NOT allows you to select rows that do not match a certain condition.
+#LIKE allows you to match similar values, instead of exact values.
+#IN allows you to specify a list of values you’d like to include.
+#BETWEEN allows you to select only rows within a certain range.
+#IS NULL allows you to select rows that contain no data in a given column.
+#AND allows you to select only rows that satisfy two conditions.
+#OR allows you to select rows that satisfy either of two conditions.
+#NOT allows you to select rows that do not match a certain condition.
   
   
 SELECT *
@@ -372,8 +377,7 @@ SELECT *
 
   
   
-#SQL IS NULL
-
+#8. SQL IS NULL
 #IS NULL is a logical operator in SQL that allows you to exclude rows with missing data from your results.
  
   SELECT *
@@ -382,14 +386,14 @@ SELECT *
   
   
   
-#SQL AND
+#9. SQL AND
 #AND is a logical operator in SQL that allows you to select only rows that satisfy two conditions.
   
   SELECT *
   FROM `demographics`
 	WHERE `Birth rate` = 10 AND `Internet Users` <= 100
   
-#SQL OR
+#10. SQL OR
 #OR is a logical operator in SQL that allows you to select rows that satisfy either of two conditions. It works the same way as AND, which selects the rows that satisfy both of two conditions.
   
 SELECT *
@@ -397,7 +401,7 @@ SELECT *
  WHERE `Birth rate` = 5 OR `Internet users` = 20
   
   
-#SQL ORDER BY
+#11. SQL ORDER BY
 #The ORDER BY clause allows you to reorder your results based on the data in one or more columns. 
 
   SELECT *
@@ -406,7 +410,7 @@ SELECT *
  ORDER BY `Income group`
   
   
-#SQL Aggregate Functions
+#12. SQL Aggregate Functions
 #SQL is excellent at aggregating data the way you might in a pivot table in Excel. You will use aggregate functions all the time, so it’s important to get comfortable with them. The functions themselves are the same ones you will find in Excel or any other analytics program. We’ll cover them individually in the next few lessons. Here’s a quick preview:
 
 COUNT counts how many rows are in a particular column.
@@ -414,11 +418,13 @@ SUM adds together all the values in a particular column.
 MIN and MAX return the lowest and highest values in a particular column, respectively.
 AVG calculates the average of a group of selected values.
 
+#SQL COUNT
+#COUNT is a SQL aggregate function for counting the number of rows in a particular column. COUNT is the easiest aggregate function to begin with because verifying your results is extremely simple
+	
+SELECT COUNT(*)
+   FROM `demographics`
   
-  #SQL COUNT
-
-  
-  #SQL SUM
+#SQL SUM
 #SUM is a SQL aggregate function that totals the values in a given column. Unlike COUNT, you can only use SUM on columns containing numerical values.
 
 SELECT SUM(`Internet users`)
@@ -431,4 +437,72 @@ SELECT SUM(`Internet users`)
   SELECT MIN(`Internet users`) AS `Internet users`,
        MAX(`Internet users`) AS `Internet users`
    FROM `demographics`
-  
+
+#SQL AVG	
+#AVG is a SQL aggregate function that calculates the average of a selected group of values.
+
+SELECT AVG(`Birth rate`)
+  FROM `demographics`
+	
+#SQL GROUP BY	
+#SQL aggregate functions like COUNT, AVG, and SUM have something in common: they all aggregate across the entire table. But what if you want to aggregate only part of a table? For example, you might want to count the number of entries for each year.
+
+SELECT `Income Group`,
+       	COUNT(*) AS count
+  	FROM `demographics`
+ 	GROUP BY `Income Group`
+	
+#Using GROUP BY with ORDER BY
+#The order of column names in your GROUP BY clause doesn’t matter—the results will be the same regardless. If you want to control how the aggregations are grouped together, use ORDER BY.
+
+SELECT `Birth rate`,
+       `Income Group`,
+       	COUNT(*) AS count
+  	FROM `demographics`
+ 	GROUP BY `Birth rate`, `Income Group`
+	ORDER BY `Birth rate`, `Income Group`
+	
+	
+#13. SQL DISTINCT
+#DISTINCT can be particularly helpful when exploring a new data set. In many real-world scenarios, you will generally end up writing several preliminary queries in order to figure out the best approach to answering your initial question. Looking at the unique values on each column can help identify how you might want to group or filter the data.
+
+SELECT DISTINCT `Birth rate`, `Internet users`
+  FROM `demographics`
+	
+#If you include two (or more) columns in a SELECT DISTINCT clause, your results will contain all of the unique pairs of those two columns:
+
+SELECT DISTINCT `Birth rate`, `Internet users`
+  FROM `demographics`
+
+	
+#14. SQL CASE
+#The CASE statement is SQL’s way of handling if/then logic. The CASE statement is followed by at least one pair of WHEN and THEN statements—SQL’s equivalent of IF/THEN in Excel. Because of this pairing, you might be tempted to call this SQL CASE WHEN, but CASE is the accepted term.
+#Every CASE statement must end with the END statement. The ELSE statement is optional, and provides a way to capture values not specified in the WHEN/THEN statements. CASE is easiest to understand in the context of an example:
+
+SELECT `Country Code`,
+       `Country Name`,
+       	CASE WHEN `Country Name` = 'Estonia' THEN 'yes'
+       	ELSE NULL END AS is_not
+  	FROM `demographics`
+	
+#In plain English, here’s what’s happening:
+#1. The CASE statement checks each row to see if the conditional statement—year = ‘Estonia’ is true.
+#2. For any given row, if that conditional statement is true, the word “yes” gets printed in the column that we have named is_not.
+#3. In any row for which the conditional statement is false, nothing happens in that row, leaving a null value in the is_not column.
+#4. At the same time all this is happening, SQL is retrieving and displaying all the values in the Country Name and Country Code columns.
+
+	
+	
+#Adding multiple conditions to a CASE statement
+#You can also define a number of outcomes in a CASE statement by including as many WHEN/THEN statements as you’d like:
+	
+SELECT `Country Name`,
+       `Country Code`,
+       CASE WHEN `Birth rate` > 10 THEN 'over 10Ths'
+            WHEN `Birth rate` > 20 THEN '20'
+            WHEN `Birth rate` > 50 THEN '50'
+            ELSE '50 or under' END AS special_group
+  FROM `demographics`
+	
+	
+#15. SQL Joins
