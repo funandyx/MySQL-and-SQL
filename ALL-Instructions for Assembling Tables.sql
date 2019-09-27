@@ -524,5 +524,35 @@ SELECT `Country Name`,
 	
 #15. SQL Joins
 
+##INNER JOIN
+#The following shows the syntax of the SQL Server INNER JOIN clause:
 
+SELECT
+select_list
+FROM
+T1
+INNER JOIN T2 ON join_predicate;
 	
+#In this syntax, the query retrieved data from both T1 and T2 tables:
+
+#First, specify the main table (T1) in the FROM clause
+#Second, specify the second table in the INNER JOIN clause (T2) and a join predicate. 
+#Only rows that cause the join predicate to evaluate to TRUE are included in the result set.
+#The INNER JOIN clause compares each row of the table T1 with rows of table T2 to find all pairs of rows that satisfy 
+#the join predicate. If the join predicate evaluates to TRUE, the column values of the matching rows of T1 and T2 are 
+#combined into a new row and included in the result set.
+	
+	
+	
+#Example 1
+SELECT * FROM ListOfOrders INNER JOIN OrderBreakdown 
+ON ListOfOrders.`Order ID` = OrderBreakdown.`Order ID`;
+	
+#Example 2
+SELECT ListOfOrders.*, OrderBreakdown.* 
+FROM `ListOfOrders`, `OrderBreakdown`
+WHERE ListOfOrders.`Order ID` = OrderBreakdown.`Order ID`;
+	
+	
+
+
